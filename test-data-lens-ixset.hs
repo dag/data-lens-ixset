@@ -50,4 +50,4 @@ prop_set_set fname lname1 lname2 =
 main :: IO ()
 main = do
   success <- $quickCheckAll
-  when (not success) exitFailure
+  unless success exitFailure
