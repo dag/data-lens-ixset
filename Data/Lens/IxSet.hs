@@ -16,7 +16,8 @@ import Data.Typeable
 --
 -- > people' = lastName . ixLens (FirstName "Simon") ^= (LastName "Peyton-Jones") people
 --
--- Perhaps more commonly you're working with an IxSet from inside a state monad such as with acid-state.  In that case usage is even easier:
+-- Perhaps more commonly you're working with an IxSet from inside a state
+-- monad such as with acid-state.  In that case usage is even easier:
 --
 -- > changeLastName = lastName . ixLens (FirstName "Simon") %= LastName "Peyton-Jones"
 --
