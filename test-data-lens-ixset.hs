@@ -27,31 +27,21 @@ instance Indexable Person where
                 , ixGen (Proxy :: Proxy LastName)
                 ]
 
-instance Arbitrary Person where
-  arbitrary = do
-    firstname <- arbitrary
-    lastname <- arbitrary
-    return $ Person firstname lastname
-
-instance (Arbitrary a, Indexable a, Typeable a, Ord a)
-      => Arbitrary (IxSet a) where
-  arbitrary = do
-    items <- arbitrary
-    return $ fromList items
-
-prop_get_set :: FirstName -> LastName -> IxSet Person -> Bool
-prop_get_set fname lname ix = getL l (setL l p ix) == p
+prop_get_set :: FirstName -> LastName -> Bool
+prop_get_set fname lname = getL l (setL l p empty) == p
   where
     l = ixLens fname
     p = Just $ Person fname lname
 
-prop_set_get :: FirstName -> IxSet Person -> Bool
-prop_set_get fname ix = setL l (getL l ix) ix == ix
+prop_set_get :: FirstName -> LastName -> Bool
+prop_set_get fname lname = setL l (getL l ix) ix == ix
   where
-    l = ixLens fname
+    l  = ixLens fname
+    ix = fromList [Person fname lname]
 
-prop_set_set :: FirstName -> LastName -> LastName -> IxSet Person -> Bool
-prop_set_set fname lname1 lname2 ix = setL l p1 (setL l p2 ix) == setL l p1 ix
+prop_set_set :: FirstName -> LastName -> LastName -> Bool
+prop_set_set fname lname1 lname2 =
+    setL l p1 (setL l p2 empty) == setL l p1 empty
   where
     l  = ixLens fname
     p1 = Just $ Person fname lname1
