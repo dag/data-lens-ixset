@@ -11,11 +11,13 @@ Build-type    : Simple
 Cabal-version : >=1.2
 
 Library
+  GHC-Options     : -Wall -Werror
   Exposed-modules : Data.Lens.IxSet
   Build-depends   : base >= 4 && < 5,
                     data-lens >= 2.0 && < 2.1,
                     ixset >= 1.0 && < 1.1
 
 Executable test-data-lens-ixset
+  GHC-Options   : -Wall -Werror
   Main-is       : test-data-lens-ixset.hs
   Build-depends : QuickCheck >= 2.4 && < 2.5

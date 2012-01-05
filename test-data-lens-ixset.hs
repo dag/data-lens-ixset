@@ -47,6 +47,7 @@ prop_set_set fname lname1 lname2 =
     p1 = Just $ Person fname lname1
     p2 = Just $ Person fname lname2
 
+main :: IO ()
 main = do
   success <- $quickCheckAll
   when (not success) exitFailure
