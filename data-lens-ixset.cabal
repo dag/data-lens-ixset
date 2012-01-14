@@ -1,5 +1,5 @@
 Name          : data-lens-ixset
-Version       : 0.1.1
+Version       : 0.1.2
 Synopsis      : A Lens for IxSet
 Description   : Integrates Data.IxSet with Data.Lens.
 Homepage      : https://github.com/dag/data-lens-ixset
@@ -7,7 +7,7 @@ License       : BSD3
 License-file  : LICENSE
 Author        : Dag Odenhall
 Maintainer    : dag.odenhall@gmail.com
-Category      : Control, Comonad, Data Structures
+Category      : Control, Comonads, Data Structures
 Build-type    : Simple
 Cabal-version : >= 1.9.2
 
