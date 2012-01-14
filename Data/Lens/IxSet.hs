@@ -12,32 +12,24 @@ import Data.Typeable
 -- >                   , Person (FirstName "Simon") (LastName "P. Jones")
 -- >                   ]
 --
--- We can now work with indices as lenses and fix Simon's last name:
+-- We can now work with indices using lenses and fix Simon's last name:
 --
--- > people' = lastName . ixLens (FirstName "Simon") ^= (LastName "Peyton-Jones") people
+-- > people' = ixLens (FirstName "Simon") ^%= fmap (lastName ^= LastName "Peyton-Jones") $ people
 --
 -- Perhaps more commonly you're working with an IxSet from inside a state
 -- monad such as with acid-state.  In that case usage is even easier:
 --
--- > changeLastName = lastName . ixLens (FirstName "Simon") %= LastName "Peyton-Jones"
---
--- Feels backwards?  Lens composition uses 'Category' so we can flip it
--- around more intuitively using the composition arrows instead:
---
--- > changeLastName' = ixLens (FirstName "Simon") >>> lastName %= LastName "Peyton-Jones"
+-- > changeLastName = ixLens (FirstName "Simon") %= fmap (lastName ^= LastName "Peyton-Jones")
 --
 -- Here's the missing boilerplate:
 --
 -- > {-# LANGUAGE DeriveDataTypeable #-}
 -- > {-# LANGUAGE TemplateHaskell #-}
 -- >
--- > import Prelude hiding ((.))
--- > import Control.Category
 -- > import Data.Data
--- >
+-- > import Data.IxSet
 -- > import Data.Lens
 -- > import Data.Lens.Template
--- > import Data.IxSet
 -- >
 -- > data Person = Person { _firstName :: FirstName
 -- >                      , _lastName  :: LastName
