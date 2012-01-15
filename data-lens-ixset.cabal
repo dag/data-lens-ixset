@@ -1,5 +1,5 @@
 Name          : data-lens-ixset
-Version       : 0.1.3
+Version       : 0.1.4
 Synopsis      : A Lens for IxSet
 Description   : Integrates Data.IxSet with Data.Lens.
 Homepage      : https://github.com/dag/data-lens-ixset
