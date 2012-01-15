@@ -45,10 +45,10 @@ data Person = Person { _firstName :: FirstName
 
 mkLens ''Person
 
-newtype FirstName = FirstName String
+newtype FirstName = FirstName 'String'
   deriving ('Show', 'Eq', 'Ord', 'Data', 'Typeable')
 
-newtype LastName = LastName String
+newtype LastName = LastName 'String'
   deriving ('Show', 'Eq', 'Ord', 'Data', 'Typeable')
 
 instance 'Indexable' Person where
